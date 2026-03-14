@@ -172,7 +172,7 @@ function ModeSelector({onSelect}) {
       </div>
       <div style={{width:"100%",maxWidth:400,display:"flex",flexDirection:"column",gap:14}}>
         {[
-          {mode:"user",icon:"👤",title:"I'm a User",desc:"Connect to free WiFi, watch ads, earn ₦20 + 2GB daily",c:"var(--gold)",bg:"rgba(245,200,66,.08)",border:"rgba(245,200,66,.2)"},
+          {mode:"user",icon:"👤",title:"I'm a User",desc:"Connect to free WiFi, watch ads, earn ₦20 cash + 100MB to SIM daily",c:"var(--gold)",bg:"rgba(245,200,66,.08)",border:"rgba(245,200,66,.2)"},
           {mode:"brand",icon:"🏢",title:"I'm a Brand",desc:"Run hyperlocal ads on StreetKash poles. Pay per 100% view.",c:"var(--pu)",bg:"rgba(176,111,255,.08)",border:"rgba(176,111,255,.2)"},
           {mode:"admin",icon:"⚙️",title:"Operator Dashboard",desc:"Monitor all poles, revenue, uptime and network health",c:"var(--green)",bg:"rgba(12,255,170,.08)",border:"rgba(12,255,170,.2)"},
         ].map(({mode,icon,title,desc,c,bg,border}) => (
@@ -229,7 +229,7 @@ function ConnectScreen({onConnect,onBack}) {
           <p style={{fontSize:10,color:"var(--m2)",marginTop:6}}>Used to send your daily ₦20 reward</p>
         </div>
         <div style={{display:"grid",gridTemplateColumns:"1fr 1fr 1fr",gap:8,marginBottom:18}}>
-          {[["₦20","Daily Cash","var(--gold)"],["500MB","Fast Data","var(--bl)"],["1.5GB","Bonus Data","var(--green)"]].map(([v,l,c]) => (
+          {[["₦20","Cash Reward","var(--gold)"],["100MB","To Your SIM","var(--green)"]].map(([v,l,c]) => (
             <div key={l} style={{background:"rgba(255,255,255,.03)",border:"1px solid rgba(255,255,255,.07)",borderRadius:12,padding:"11px 6px",textAlign:"center"}}>
               <div style={{fontFamily:"'Syne',sans-serif",fontWeight:900,fontSize:14,color:c}}>{v}</div>
               <div style={{fontSize:10,color:"var(--m2)",marginTop:2}}>{l}</div>
@@ -289,7 +289,7 @@ function AdScreen({onComplete}) {
           </div>
         )}
         <div style={{display:"flex",gap:8,justifyContent:"center",marginBottom:22}}>
-          {[["₦20","Cash","var(--gold)"],["500MB","Data","var(--bl)"],["1.5GB","Bonus","var(--green)"]].map(([v,l,c]) => (
+          {[["₦20","Cash","var(--gold)"],["100MB","To SIM","var(--green)"]].map(([v,l,c]) => (
             <div key={l} style={{flex:1,background:"rgba(255,255,255,.04)",border:"1px solid rgba(255,255,255,.08)",borderRadius:12,padding:"10px 6px",textAlign:"center"}}>
               <div style={{fontFamily:"'Syne',sans-serif",fontWeight:800,fontSize:13,color:c}}>{v}</div>
               <div style={{fontSize:10,color:"var(--m2)",marginTop:2}}>{l}</div>
@@ -305,7 +305,41 @@ function AdScreen({onComplete}) {
 }
 
 // ── REWARD SCREEN ────────────────────────────────────────────────────────
-iv className='reward-item'>  <span className='amount'>₦20</span>  <span className='label'>Cash to Wallet</span></div><div className='reward-item'>  <span className='amount'>100MB</span>  <span className='label'>Data Sent to Your SIM</span>  <span className='network'>{detectedNetwork}</span></div>
+function RewardScreen({onContinue}) {
+  const [vis,setVis] = useState(false);
+  useEffect(() => {const t=setTimeout(() => setVis(true),80);return () => clearTimeout(t);},[]);
+  return (
+    <div style={{position:"relative",display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",minHeight:"100vh",padding:"32px 20px",textAlign:"center",zIndex:2}}>
+      <Aurora/><Grain/><DotGrid/>
+      {vis && <Confetti/>}
+      {vis && <>
+        <div className="as" style={{fontSize:78,marginBottom:16,filter:"drop-shadow(0 0 30px rgba(245,200,66,.5))"}}>🏆</div>
+        <h2 className="au" style={{fontFamily:"'Syne',sans-serif",fontSize:32,fontWeight:900,animationDelay:".08s"}}><span className="holo">Reward Claimed!</span></h2>
+        <p className="au" style={{color:"var(--m2)",fontSize:13,margin:"10px 0 32px",animationDelay:".18s"}}>Instantly credited to your wallet.</p>
+        <div className="au" style={{width:"100%",maxWidth:368,marginBottom:24,animationDelay:".26s"}}>
+          <HoloBorder r={22} innerBg="#0C1220">
+            <div style={{padding:"24px 20px"}}>
+              {[{ic:"💰",l:"Cash Credited",v:"₦20.00",c:"var(--gold)"},{ic:"📲",l:"Data Sent to SIM",v:"100MB",c:"var(--green)"}].map((r,i) => (
+                <div key={r.l} style={{display:"flex",justifyContent:"space-between",alignItems:"center",padding:"14px 0",borderBottom:i<2?"1px solid rgba(255,255,255,.06)":"none"}}>
+                  <div style={{display:"flex",alignItems:"center",gap:12}}><span style={{fontSize:22,filter:`drop-shadow(0 0 10px ${r.c}50)`}}>{r.ic}</span><span style={{fontSize:13,color:"var(--m2)"}}>{r.l}</span></div>
+                  <span style={{fontFamily:"'Syne',sans-serif",fontWeight:900,fontSize:19,color:r.c,animation:`countIn .55s ${i*.12}s ease both`}}>{r.v}</span>
+                </div>
+              ))}
+              <div style={{marginTop:16,background:"rgba(245,200,66,.07)",border:"1px solid rgba(245,200,66,.17)",borderRadius:12,padding:"12px 14px",display:"flex",justifyContent:"space-between"}}>
+                <span style={{fontSize:12,color:"var(--m2)"}}>Today's Reward</span>
+                <span style={{fontFamily:"'Syne',sans-serif",fontWeight:900,fontSize:20,color:"var(--green)"}}>₦20 + 100MB</span>
+              </div>
+            </div>
+          </HoloBorder>
+        </div>
+        <div className="au" style={{width:"100%",maxWidth:368,animationDelay:".4s"}}>
+          <p style={{fontSize:12,color:"var(--m2)",marginBottom:16,lineHeight:1.9}}>Same pole. Same reward. Tomorrow, again.</p>
+          <button className="btn" onClick={onContinue}>Browse the Web for Free →</button>
+        </div>
+      </>}
+    </div>
+  );
+}
 
 // ── USER DASHBOARD ───────────────────────────────────────────────────────
 function UserDashboard({onReset}) {
@@ -330,13 +364,13 @@ function UserDashboard({onReset}) {
             <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:10,marginBottom:10}}>
               <div className="glass" style={{gridColumn:"1/-1",padding:"20px",background:"rgba(12,255,170,.03)",border:"1px solid rgba(12,255,170,.11)"}}>
                 <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start"}}>
-                  <div><p style={{fontSize:10,color:"var(--green)",letterSpacing:"2px",textTransform:"uppercase",marginBottom:8}}>Today's Reward</p><div style={{fontFamily:"'Syne',sans-serif",fontWeight:900,fontSize:34,color:"var(--green)",lineHeight:1}}>₦20 + 2GB</div><p style={{fontSize:12,color:"var(--m2)",marginTop:7}}>Claimed 8:42 AM · GTBank ad</p></div>
+                  <div><p style={{fontSize:10,color:"var(--green)",letterSpacing:"2px",textTransform:"uppercase",marginBottom:8}}>Today's Reward</p><div style={{fontFamily:"'Syne',sans-serif",fontWeight:900,fontSize:34,color:"var(--green)",lineHeight:1}}>₦20 + 100MB</div><p style={{fontSize:12,color:"var(--m2)",marginTop:7}}>Claimed 8:42 AM · GTBank ad</p></div>
                   <div style={{fontSize:46,filter:"drop-shadow(0 0 18px rgba(12,255,170,.5))"}}>✅</div>
                 </div>
                 <div style={{marginTop:16}}><div className="pt"><div className="pf" style={{width:"100%",background:"linear-gradient(90deg,var(--green),#07D080)"}}/></div><p style={{fontSize:10,color:"var(--m2)",marginTop:5}}>Daily goal complete</p></div>
               </div>
               <div className="glass" style={{padding:"16px"}}><p style={{fontSize:10,color:"var(--m2)",textTransform:"uppercase",letterSpacing:1,marginBottom:8}}>Total Earned</p><div style={{fontFamily:"'Syne',sans-serif",fontWeight:900,fontSize:28,color:"var(--gold)"}}>₦{total}</div><p style={{fontSize:11,color:"var(--m2)",marginTop:4}}>{HIST.length} sessions</p></div>
-              <div className="glass" style={{padding:"16px"}}><p style={{fontSize:10,color:"var(--m2)",textTransform:"uppercase",letterSpacing:1,marginBottom:8}}>Data Earned</p><div style={{fontFamily:"'Syne',sans-serif",fontWeight:900,fontSize:28,color:"var(--bl)"}}>10 GB</div><p style={{fontSize:11,color:"var(--m2)",marginTop:4}}>total collected</p></div>
+              <div className="glass" style={{padding:"16px"}}><p style={{fontSize:10,color:"var(--m2)",textTransform:"uppercase",letterSpacing:1,marginBottom:8}}>Data Earned</p><div style={{fontFamily:"'Syne',sans-serif",fontWeight:900,fontSize:28,color:"var(--green)"}}>500MB</div><p style={{fontSize:11,color:"var(--m2)",marginTop:4}}>total to SIM</p></div>
               <div className="glass" style={{gridColumn:"1/-1",padding:"16px"}}>
                 <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:12}}><span style={{fontSize:13,fontWeight:600}}>🔥 Daily Streak</span><span style={{fontFamily:"'Syne',sans-serif",fontWeight:900,color:"var(--or)",fontSize:20}}>5 Days</span></div>
                 <div style={{display:"flex",gap:5}}>{["M","T","W","T","F","S","S"].map((d,i) => (<div key={i} style={{flex:1,height:36,borderRadius:10,display:"flex",alignItems:"center",justifyContent:"center",fontSize:10,fontWeight:700,background:i<5?"linear-gradient(135deg,var(--or),#C04000)":"rgba(255,255,255,.04)",color:i<5?"#fff":"var(--m)",boxShadow:i<5?"0 4px 14px rgba(255,101,53,.35)":"none"}}>{d}</div>))}</div>
@@ -353,7 +387,7 @@ function UserDashboard({onReset}) {
               {HIST.map((h,i) => (
                 <div key={i} style={{display:"flex",alignItems:"center",justifyContent:"space-between",padding:"13px 0",borderBottom:i<HIST.length-1?"1px solid rgba(255,255,255,.05)":"none",animation:`slideR .3s ${i*.08}s ease both`,opacity:0}}>
                   <div style={{display:"flex",gap:12,alignItems:"center"}}><div style={{width:40,height:40,borderRadius:12,background:`${h.c}15`,border:`1px solid ${h.c}30`,display:"flex",alignItems:"center",justifyContent:"center",fontSize:18}}>{h.e}</div><div><p style={{fontSize:13,fontWeight:600}}>{h.ad}</p><p style={{fontSize:11,color:"var(--m2)",marginTop:2}}>{h.d}</p></div></div>
-                  <div style={{textAlign:"right"}}><p style={{fontFamily:"'Syne',sans-serif",fontWeight:800,color:"var(--green)",fontSize:15}}>+₦20</p><p style={{fontSize:10,color:"var(--m2)",marginTop:2}}>+2GB data</p></div>
+                  <div style={{textAlign:"right"}}><p style={{fontFamily:"'Syne',sans-serif",fontWeight:800,color:"var(--green)",fontSize:15}}>+₦20</p><p style={{fontSize:10,color:"var(--m2)",marginTop:2}}>+100MB to SIM</p></div>
                 </div>
               ))}
             </div>
