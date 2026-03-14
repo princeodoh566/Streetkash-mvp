@@ -305,41 +305,7 @@ function AdScreen({onComplete}) {
 }
 
 // ── REWARD SCREEN ────────────────────────────────────────────────────────
-function RewardScreen({onContinue}) {
-  const [vis,setVis] = useState(false);
-  useEffect(() => {const t=setTimeout(() => setVis(true),80);return () => clearTimeout(t);},[]);
-  return (
-    <div style={{position:"relative",display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",minHeight:"100vh",padding:"32px 20px",textAlign:"center",zIndex:2}}>
-      <Aurora/><Grain/><DotGrid/>
-      {vis && <Confetti/>}
-      {vis && <>
-        <div className="as" style={{fontSize:78,marginBottom:16,filter:"drop-shadow(0 0 30px rgba(245,200,66,.5))"}}>🏆</div>
-        <h2 className="au" style={{fontFamily:"'Syne',sans-serif",fontSize:32,fontWeight:900,animationDelay:".08s"}}><span className="holo">Reward Claimed!</span></h2>
-        <p className="au" style={{color:"var(--m2)",fontSize:13,margin:"10px 0 32px",animationDelay:".18s"}}>Instantly credited to your wallet.</p>
-        <div className="au" style={{width:"100%",maxWidth:368,marginBottom:24,animationDelay:".26s"}}>
-          <HoloBorder r={22} innerBg="#0C1220">
-            <div style={{padding:"24px 20px"}}>
-              {[{ic:"💰",l:"Cash Credited",v:"₦20.00",c:"var(--gold)"},{ic:"📶",l:"Fast Data Added",v:"500 MB",c:"var(--bl)"},{ic:"🎁",l:"Bonus Data Added",v:"1.5 GB",c:"var(--green)"}].map((r,i) => (
-                <div key={r.l} style={{display:"flex",justifyContent:"space-between",alignItems:"center",padding:"14px 0",borderBottom:i<2?"1px solid rgba(255,255,255,.06)":"none"}}>
-                  <div style={{display:"flex",alignItems:"center",gap:12}}><span style={{fontSize:22,filter:`drop-shadow(0 0 10px ${r.c}50)`}}>{r.ic}</span><span style={{fontSize:13,color:"var(--m2)"}}>{r.l}</span></div>
-                  <span style={{fontFamily:"'Syne',sans-serif",fontWeight:900,fontSize:19,color:r.c,animation:`countIn .55s ${i*.12}s ease both`}}>{r.v}</span>
-                </div>
-              ))}
-              <div style={{marginTop:16,background:"rgba(245,200,66,.07)",border:"1px solid rgba(245,200,66,.17)",borderRadius:12,padding:"12px 14px",display:"flex",justifyContent:"space-between"}}>
-                <span style={{fontSize:12,color:"var(--m2)"}}>Total Value Today</span>
-                <span style={{fontFamily:"'Syne',sans-serif",fontWeight:900,fontSize:20,color:"var(--gold)"}}>≈ ₦320</span>
-              </div>
-            </div>
-          </HoloBorder>
-        </div>
-        <div className="au" style={{width:"100%",maxWidth:368,animationDelay:".4s"}}>
-          <p style={{fontSize:12,color:"var(--m2)",marginBottom:16,lineHeight:1.9}}>Same pole. Same reward. Tomorrow, again.</p>
-          <button className="btn" onClick={onContinue}>Browse the Web for Free →</button>
-        </div>
-      </>}
-    </div>
-  );
-}
+iv className='reward-item'>  <span className='amount'>₦20</span>  <span className='label'>Cash to Wallet</span></div><div className='reward-item'>  <span className='amount'>100MB</span>  <span className='label'>Data Sent to Your SIM</span>  <span className='network'>{detectedNetwork}</span></div>
 
 // ── USER DASHBOARD ───────────────────────────────────────────────────────
 function UserDashboard({onReset}) {
