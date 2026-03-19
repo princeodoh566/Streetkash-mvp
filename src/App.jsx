@@ -229,7 +229,7 @@ function ConnectScreen({onConnect,onBack}){
           <div style={{position:"absolute",bottom:-4,right:-4,width:28,height:28,borderRadius:"50%",background:"linear-gradient(135deg,#0CFFAA,#07D088)",display:"flex",alignItems:"center",justifyContent:"center",fontSize:13,boxShadow:"0 0 14px rgba(12,255,170,.75)",border:"3px solid var(--dark)"}}>📶</div>
         </div>
         <h1 style={{fontFamily:"'Syne',sans-serif",fontWeight:900,fontSize:34,letterSpacing:"-1px"}}><span className="holo">StreetKash</span></h1>
-        <p style={{fontSize:10,color:"var(--m2)",marginTop:6,letterSpacing:"3px",textTransform:"uppercase"}}>Free WiFi · Solar Powered</p>
+        <p style={{fontSize:10,color:"var(--m2)",marginTop:6,letterSpacing:"3px",textTransform:"uppercase"}}>Free WiFi · ₦20 + 100MB Daily · Solar Powered</p>
       </div>
 
       <div className="glass au" style={{width:"100%",maxWidth:380,padding:"24px",marginBottom:16,animationDelay:".15s"}}>
@@ -243,10 +243,10 @@ function ConnectScreen({onConnect,onBack}){
         <div style={{marginBottom:18}}>
           <label style={{fontSize:11,color:"var(--m2)",display:"block",marginBottom:8,letterSpacing:1}}>YOUR PHONE NUMBER</label>
           <input placeholder="080XXXXXXXX" value={phone} onChange={e=>setPhone(e.target.value)} maxLength={11}/>
-          <p style={{fontSize:10,color:"var(--m2)",marginTop:6}}>Used to send your daily ₦20 reward</p>
+          <p style={{fontSize:10,color:"var(--m2)",marginTop:6}}>Used to send your daily ₦20 + 100MB reward</p>
         </div>
         <div style={{display:"grid",gridTemplateColumns:"1fr 1fr 1fr",gap:8,marginBottom:18}}>
-          {[["₦20","Daily Cash","var(--gold)"],["500MB","Fast Data","var(--bl)"],["1.5GB","Bonus Data","var(--green)"]].map(([v,l,c])=>(
+          {[["₦20","Daily Cash","var(--gold)"],["100MB","Free Data","var(--bl)"]].map(([v,l,c])=>(
             <div key={l} style={{background:"rgba(255,255,255,.03)",border:"1px solid rgba(255,255,255,.07)",borderRadius:12,padding:"11px 6px",textAlign:"center"}}>
               <div style={{fontFamily:"'Syne',sans-serif",fontWeight:900,fontSize:14,color:c}}>{v}</div>
               <div style={{fontSize:10,color:"var(--m2)",marginTop:2}}>{l}</div>
@@ -261,7 +261,7 @@ function ConnectScreen({onConnect,onBack}){
           </div>
         )}
       </div>
-      <p className="au" style={{animationDelay:".3s",fontSize:11,color:"var(--m)",textAlign:"center",maxWidth:300,lineHeight:1.85}}>Watch one 10-second ad to claim your daily reward. Free. Every day.</p>
+      <p className="au" style={{animationDelay:".3s",fontSize:11,color:"var(--m)",textAlign:"center",maxWidth:300,lineHeight:1.85}}>Watch one 10-second ad to claim your daily ₦20 + 100MB reward. Free. Every day.</p>
     </div>
   );
 }
@@ -299,7 +299,7 @@ function AdScreen({onComplete}){
           </div>
         )}
         <div style={{display:"flex",gap:8,justifyContent:"center",marginBottom:22}}>
-          {[["₦20","Cash","var(--gold)"],["500MB","Data","var(--bl)"],["1.5GB","Bonus","var(--green)"]].map(([v,l,c])=>(
+          {[["₦20","Cash","var(--gold)"],["100MB","Data","var(--bl)"]].map(([v,l,c])=>(
             <div key={l} style={{flex:1,background:"rgba(255,255,255,.04)",border:"1px solid rgba(255,255,255,.08)",borderRadius:12,padding:"10px 6px",textAlign:"center"}}>
               <div style={{fontFamily:"'Syne',sans-serif",fontWeight:800,fontSize:13,color:c}}>{v}</div>
               <div style={{fontSize:10,color:"var(--m2)",marginTop:2}}>{l}</div>
@@ -328,7 +328,7 @@ function RewardScreen({onContinue}){
         <div className="au" style={{width:"100%",maxWidth:368,marginBottom:24,animationDelay:".26s"}}>
           <HoloBorder r={22} innerBg="#0C1220">
             <div style={{padding:"24px 20px"}}>
-              {[{ic:"💵",l:"Cash Credited",v:"₦20.00",c:"var(--gold)"},{ic:"📶",l:"Fast Data Added",v:"500 MB",c:"var(--bl)"},{ic:"🌐",l:"Bonus Data Added",v:"1.5 GB",c:"var(--green)"}].map((r,i)=>(
+              {[{ic:"💵",l:"Cash Credited",v:"₦20.00",c:"var(--gold)"},{ic:"📶",l:"Data Added",v:"100 MB",c:"var(--bl)"}].map((r,i)=>(
                 <div key={r.l} style={{display:"flex",justifyContent:"space-between",alignItems:"center",padding:"14px 0",borderBottom:i<2?"1px solid rgba(255,255,255,.06)":"none"}}>
                   <div style={{display:"flex",alignItems:"center",gap:12}}><span style={{fontSize:22,filter:`drop-shadow(0 0 10px ${r.c}50)`}}>{r.ic}</span><span style={{fontSize:13,color:"var(--m2)"}}>{r.l}</span></div>
                   <span style={{fontFamily:"'Syne',sans-serif",fontWeight:900,fontSize:19,color:r.c,animation:`countIn .55s ${i*.12}s ease both`}}>{r.v}</span>
@@ -336,7 +336,7 @@ function RewardScreen({onContinue}){
               ))}
               <div style={{marginTop:16,background:"rgba(245,200,66,.07)",border:"1px solid rgba(245,200,66,.17)",borderRadius:12,padding:"12px 14px",display:"flex",justifyContent:"space-between"}}>
                 <span style={{fontSize:12,color:"var(--m2)"}}>Total Value Today</span>
-                <span style={{fontFamily:"'Syne',sans-serif",fontWeight:900,fontSize:20,color:"var(--gold)"}}>≈ ₦320</span>
+                <span style={{fontFamily:"'Syne',sans-serif",fontWeight:900,fontSize:20,color:"var(--gold)"}}>≈ ₦70–₦120</span>
               </div>
             </div>
           </HoloBorder>
@@ -372,13 +372,13 @@ function UserDashboard({onReset}){
             <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:10,marginBottom:10}}>
               <div className="glass" style={{gridColumn:"1/-1",padding:"20px",background:"rgba(12,255,170,.03)",border:"1px solid rgba(12,255,170,.11)"}}>
                 <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start"}}>
-                  <div><p style={{fontSize:10,color:"var(--green)",letterSpacing:"2px",textTransform:"uppercase",marginBottom:8}}>Today's Reward</p><div style={{fontFamily:"'Syne',sans-serif",fontWeight:900,fontSize:34,color:"var(--green)",lineHeight:1}}>₦20 + 2GB</div><p style={{fontSize:12,color:"var(--m2)",marginTop:7}}>Claimed 8:42 AM · GTBank ad</p></div>
+                  <div><p style={{fontSize:10,color:"var(--green)",letterSpacing:"2px",textTransform:"uppercase",marginBottom:8}}>Today's Reward</p>                  <div style={{fontFamily:"'Syne',sans-serif",fontWeight:900,fontSize:34,color:"var(--green)",lineHeight:1}}>₦20 + 100MB</div>              <p style={{fontSize:12,color:"var(--m2)",marginTop:7}}>Claimed 8:42 AM · GTBank ad · ₦20 + 100MB</p></div>
                   <div style={{fontSize:46,filter:"drop-shadow(0 0 18px rgba(12,255,170,.5))"}}>✅</div>
                 </div>
                 <div style={{marginTop:16}}><div className="pt"><div className="pf" style={{width:"100%",background:"linear-gradient(90deg,var(--green),#07D080)"}}/></div><p style={{fontSize:10,color:"var(--m2)",marginTop:5}}>Daily goal complete</p></div>
               </div>
               <div className="glass" style={{padding:"16px"}}><p style={{fontSize:10,color:"var(--m2)",textTransform:"uppercase",letterSpacing:1,marginBottom:8}}>Total Earned</p><div style={{fontFamily:"'Syne',sans-serif",fontWeight:900,fontSize:28,color:"var(--gold)"}}>₦{total}</div><p style={{fontSize:11,color:"var(--m2)",marginTop:4}}>{HIST.length} sessions</p></div>
-              <div className="glass" style={{padding:"16px"}}><p style={{fontSize:10,color:"var(--m2)",textTransform:"uppercase",letterSpacing:1,marginBottom:8}}>Data Earned</p><div style={{fontFamily:"'Syne',sans-serif",fontWeight:900,fontSize:28,color:"var(--bl)"}}>10 GB</div><p style={{fontSize:11,color:"var(--m2)",marginTop:4}}>total collected</p></div>
+              <div className="glass" style={{padding:"16px"}}><p style={{fontSize:10,color:"var(--m2)",textTransform:"uppercase",letterSpacing:1,marginBottom:8}}>Data Earned</p><div style={{fontFamily:"'Syne',sans-serif",fontWeight:900,fontSize:28,color:"var(--bl)"}}>500MB</div><p style={{fontSize:11,color:"var(--m2)",marginTop:4}}>total collected</p></div>
               <div className="glass" style={{gridColumn:"1/-1",padding:"16px"}}>
                 <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:12}}><span style={{fontSize:13,fontWeight:600}}>🔥 Daily Streak</span><span style={{fontFamily:"'Syne',sans-serif",fontWeight:900,color:"var(--or)",fontSize:20}}>5 Days</span></div>
                 <div style={{display:"flex",gap:5}}>{["M","T","W","T","F","S","S"].map((d,i)=>(<div key={i} style={{flex:1,height:36,borderRadius:10,display:"flex",alignItems:"center",justifyContent:"center",fontSize:10,fontWeight:700,background:i<5?"linear-gradient(135deg,var(--or),#C04000)":"rgba(255,255,255,.04)",color:i<5?"#fff":"var(--m)",boxShadow:i<5?"0 4px 14px rgba(255,101,53,.35)":"none"}}>{d}</div>))}</div>
@@ -394,7 +394,7 @@ function UserDashboard({onReset}){
             <div className="glass" style={{padding:"0 16px"}}>
               {HIST.map((h,i)=>(<div key={i} style={{display:"flex",alignItems:"center",justifyContent:"space-between",padding:"13px 0",borderBottom:i<HIST.length-1?"1px solid rgba(255,255,255,.05)":"none",animation:`slideR .3s ${i*.08}s ease both`,opacity:0}}>
                 <div style={{display:"flex",gap:12,alignItems:"center"}}><div style={{width:40,height:40,borderRadius:12,background:`${h.c}15`,border:`1px solid ${h.c}30`,display:"flex",alignItems:"center",justifyContent:"center",fontSize:18}}>{h.e}</div><div><p style={{fontSize:13,fontWeight:600}}>{h.ad}</p><p style={{fontSize:11,color:"var(--m2)",marginTop:2}}>{h.d}</p></div></div>
-                <div style={{textAlign:"right"}}><p style={{fontFamily:"'Syne',sans-serif",fontWeight:800,color:"var(--green)",fontSize:15}}>+₦20</p><p style={{fontSize:10,color:"var(--m2)",marginTop:2}}>+2GB data</p></div>
+                                  <div style={{textAlign:"right"}}><p style={{fontFamily:"'Syne',sans-serif",fontWeight:800,color:"var(--green)",fontSize:15}}>+₦20</p><p style={{fontSize:10,color:"var(--m2)",marginTop:2}}>+100MB data</p></div>
               </div>))}
             </div>
           </div>
@@ -745,7 +745,7 @@ function OperatorDashboard({onBack}){
               {[
                 ["User connects to StreetKash-Free","Captive portal loads on their phone"],
                 ["User watches 10-sec ad","Raspberry Pi logs completed view, triggers reward"],
-                ["Reward disbursed instantly","₦20 to wallet + 2GB unlocked via MikroTik"],
+                ["Reward disbursed instantly","₦20 to wallet + 100MB unlocked via MikroTik"],
                 ["View data sent to cloud","Brand dashboard updates in real time"],
                 ["Daily report generated","Operator console shows revenue, users, uptime"],
               ].map(([a,b],i)=>(
@@ -761,7 +761,7 @@ function OperatorDashboard({onBack}){
         {tab==="network"&&(
           <div style={{animation:"fadeUp .4s ease"}}>
             <p style={{fontSize:13,color:"var(--m2)",marginBottom:16,lineHeight:1.8}}>Real-time network health across all StreetKash poles.</p>
-            {[{ic:"🌐",t:"Network Provider",v:"Airtel Business",s:"Bulk APN · 500GB/month plan",c:"var(--gold)"},{ic:"📶",t:"Total Data Used",v:"312GB",s:"of 500GB this month · 62%",c:"var(--bl)"},{ic:"⚡",t:"Solar Output",v:"48.2 kWh",s:"Average across all 4 poles today",c:"var(--or)"},{ic:"🔒",t:"Security Status",v:"All Clear",s:"No tampering alerts in 30 days",c:"var(--green)"},{ic:"📊",t:"Total Ad Views",v:totalViews.toLocaleString(),s:"Delivered this month across all poles",c:"var(--pu)"}].map((s)=>(
+            {[{ic:"🌐",t:"Network Provider",v:"Airtel Business",s:"Bulk APN · 500GB/month plan",c:"var(--gold)"},              {ic:"📶",t:"Total Data Used",v:"15GB",s:"of 50GB this month · 300MB per day controlled",c:"var(--bl)"},{ic:"⚡",t:"Solar Output",v:"48.2 kWh",s:"Average across all 4 poles today",c:"var(--or)"},{ic:"🔒",t:"Security Status",v:"All Clear",s:"No tampering alerts in 30 days",c:"var(--green)"},{ic:"📊",t:"Total Ad Views",v:totalViews.toLocaleString(),s:"Delivered this month across all poles",c:"var(--pu)"}].map((s)=>(
               <div key={s.t} className="glass" style={{marginBottom:10,padding:"16px",display:"flex",gap:14,alignItems:"center"}}>
                 <div style={{width:48,height:48,borderRadius:14,background:"rgba(255,255,255,.04)",border:"1px solid rgba(255,255,255,.08)",display:"flex",alignItems:"center",justifyContent:"center",fontSize:22,filter:`drop-shadow(0 0 12px ${s.c}50)`,flexShrink:0}}>{s.ic}</div>
                 <div style={{flex:1}}><div style={{display:"flex",justifyContent:"space-between"}}><span style={{fontSize:13,fontWeight:600}}>{s.t}</span><span style={{fontFamily:"'Syne',sans-serif",fontWeight:900,fontSize:14,color:s.c}}>{s.v}</span></div><p style={{fontSize:11,color:"var(--m2)",marginTop:4}}>{s.s}</p></div>
