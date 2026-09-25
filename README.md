@@ -63,6 +63,6 @@ The next stages involve research, field validation, technical feasibility, and r
 
 Note
 
-StreetKash is a project under Gitaris Technologies.
+StreetKash is a project under Gidaris Technologies.
 
 This repository documents an early stage of the project's development and may change significantly as validation and technical research continue.
